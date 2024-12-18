@@ -1,0 +1,157 @@
+{% extends 'login.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+    {# <h1>Register</h1>
+
+    {{ form_errors(registrationForm) }}
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.username) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+
+        <button type="submit" class="btn">Register</button>
+    {{ form_end(registrationForm) }} #}
+    <div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            {{ form_start(registrationForm, {'attr': {'class': 'login100-form validate-form'}}) }}
+                <span class="login100-form-title p-b-26">
+                    Sign Up
+                </span>
+                
+                <!-- Username Field -->
+                <label>Username</label>
+                <div class="wrap-input100 validate-input" data-validate="Enter a valid username">
+                    {{ form_widget(registrationForm.username, {'attr': {'class': 'input100', 'placeholder': 'Username', 'id': 'inputUsername'}}) }}
+                    <span class="focus-input100" ></span>
+                    {{ form_errors(registrationForm.username) }}
+                </div>
+                
+         <label>Password</label>
+<div class="wrap-input100 validate-input" data-validate="Enter a valid password">
+    <span class="btn-show-pass">
+        <i class="zmdi zmdi-eye" id="togglePassword2" style="cursor: pointer;"></i>
+    </span>
+    {{ form_widget(registrationForm.plainPassword, {
+        'attr': {
+            'class': 'input100',
+            'placeholder': 'Password',
+            'id': 'inputPassword2',
+            'type': 'password'
+        }
+    }) }}
+    <span class="focus-input100"></span>
+    {{ form_errors(registrationForm.plainPassword) }}
+</div>
+{# 
+                <label>Password</label>
+<div class="wrap-input100 validate-input" data-validate="Enter a valid password">
+    <span class="btn-show-pass">
+        <i class="zmdi zmdi-eye" id="togglePassword2" style="cursor: pointer;"></i>
+    </span>
+    {{ form_widget(registrationForm.plainPassword, {
+        'attr': {
+            'class': 'input100',
+            'placeholder': 'Password',
+            'id': 'inputPassword2',
+            'type': 'password'
+        }
+    }) }}
+    <span class="focus-input100"></span>
+    {{ form_errors(registrationForm.plainPassword) }}
+</div> #}
+                 {# <label>Phone</label>
+                 <div class="wrap-input100 validate-input" data-validate="Enter phone">
+                 {{ form_widget(registrationForm.Phone) }}
+                    <span class="focus-input100" ></span>
+                    {{ form_errors(registrationForm.Phone) }}
+                    <input class="input100" type="text" id="Phone" name="Phone" value="{{ registrationForm.Phone.vars.value }}" required>
+                    <span class="focus-input100"></span>
+                </div> #}
+                {# <label>Phone</label>
+                    <div class="wrap-input100 validate-input" data-validate="Enter a valid phone number">
+                        {{ form_widget(registrationForm.phone, {
+                            'attr': {
+                                'class': 'input100',
+                                'pattern': '\\d{8}',  # Accepte exactement 8 chiffres
+                                'title': 'The phone number must contain exactly 8 digits',
+                                'maxlength': '8',
+                                'minlength': '8',
+                                'required': 'required'
+                            }
+                        }) }}
+                        <span class="focus-input100"></span>
+                        {{ form_errors(registrationForm.phone) }}
+                    </div> #}
+<label>Phone</label>
+<div class="wrap-input100 validate-input" data-validate="Enter a valid phone number">
+    {# Pattern for exactly 8 digits #}
+    {{ form_widget(registrationForm.phone, {
+        'attr': {
+            'class': 'input100',
+            'pattern': '\\d{8}',
+            'title': 'The phone number must contain exactly 8 digits',
+            'maxlength': '8',
+            'minlength': '8',
+            'required': 'required', 'placeholder': 'Phone'
+        }
+    }) }}
+</div>
+
+                <!-- Agree to Terms -->
+                    {{ form_widget(registrationForm.agreeTerms) }}
+                    <label for="{{ registrationForm.agreeTerms.vars.id }}">
+                        I agree to the terms and conditions
+                    </label>
+                    {{ form_errors(registrationForm.agreeTerms) }}
+               
+
+                <!-- Submit Button -->
+                <div class="container-login100-form-btn">
+                    <div class="wrap-login100-form-btn">
+                        <div class="login100-form-bgbtn"></div>
+                        <button type="submit" class="login100-form-btn">
+                            Sign Up
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Redirect to Login -->
+                <div class="text-center p-t-115">
+                    <span class="txt1">Already have an account?</span>
+                    <a class="txt2" href="{{ path('app_login') }}">Login</a>
+                </div>
+            {{ form_end(registrationForm) }}
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const togglePassword2 = document.getElementById('togglePassword2');
+    const passwordInput2 = document.getElementById('inputPassword2');
+
+    // Vérification si les éléments existent
+    if (togglePassword2 && passwordInput2) {
+        togglePassword2.addEventListener('click', function () {
+            // Vérification du type du mot de passe et basculement
+            const currentType = passwordInput2.getAttribute('type');
+            const newType = currentType === 'password' ? 'text' : 'password';
+            passwordInput2.setAttribute('type', newType);
+
+            // Basculement des classes de l'icône
+            this.classList.toggle('zmdi-eye');
+            this.classList.toggle('zmdi-eye-off');
+        });
+    } else {
+        console.error("Les éléments nécessaires pour basculer l'affichage du mot de passe n'ont pas été trouvés.");
+    }
+});
+
+</script>
+{% endblock %}

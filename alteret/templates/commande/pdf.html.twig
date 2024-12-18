@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Commandes</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Liste des Commandes</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Quantité</th>
+                <th>Prix</th>
+                <th>Date</th>
+                <th>Alteret</th>
+                <th>Utilisateur</th>
+                <th>Téléphone Utilisateur</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for commande in commandes %}
+                <tr>
+                    <td>{{ commande.quantite }}</td>
+                    <td>{{ commande.Prix }}</td>
+                    <td>{{ commande.date ? commande.date|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ commande.Alteret.Modele }}</td>
+                    <td>{{ commande.User.username }}</td>
+                    <td>{{ commande.User.Phone }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6" class="text-center text-muted">Aucune commande trouvée</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
